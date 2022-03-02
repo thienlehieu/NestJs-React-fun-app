@@ -12,7 +12,7 @@ import config from "./users/config/key"
       playground: true,
       autoSchemaFile: true
     }),
-    MongooseModule.forRoot(config.mongoURL)
+    MongooseModule.forRoot(config.mongoUrlDocker)
     ,
     UsersModule
   ],

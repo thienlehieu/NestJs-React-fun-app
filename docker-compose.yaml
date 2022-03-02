@@ -1,0 +1,40 @@
+
+version: '3'
+
+services:
+  backend:
+    container_name: backend
+    restart: unless-stopped
+    build: ./Backend
+    ports:
+      - '4000:4000'
+    networks:
+      - my-app
+  
+  frontend:
+    container_name: frontend
+    restart: unless-stopped
+    build: ./Frontend
+    ports:
+      - '3000:3000'
+    depends_on:
+      - backend
+    networks:
+      - my-app
+  db:
+    container_name: mongodb
+    restart: unless-stopped
+    image: mongo
+    environment:
+      MONGO_INITDB_DATABASE: mydb
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - my-app
+networks:
+  my-app:
+
+volumes:
+  mongo_data: 
