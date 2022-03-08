@@ -8,6 +8,8 @@ services:
     build: ./Backend
     ports:
       - '4000:4000'
+    depends_on:
+      - db
     networks:
       - my-app
   
